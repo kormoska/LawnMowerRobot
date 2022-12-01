@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace LawnMowerRobot {
 
-  public class Garden{
+  public class Garden
+  {
     private string[] GardenMap {get;set;}
-
     private Coords Charger;
-
     private Dictionary<Coords, bool> Borders;
 
     public Garden(string[] map, Coords charger)
@@ -18,6 +17,7 @@ namespace LawnMowerRobot {
         robotline[Charger.X] = 'R';
         GardenMap[Charger.Y] = new String(robotline);
         Borders = new Dictionary<Coords, bool> ();
+
         for (int i=0; i<GardenMap.Length; i++)
         {
             for (int j=0; j<GardenMap[i].Length; j++)
@@ -45,9 +45,9 @@ namespace LawnMowerRobot {
     public void RobotMoved(Coords coordfrom, Coords coordto, int fromvalue)
     {
         char[] robotline = GardenMap[coordfrom.Y].ToCharArray();
+
         robotline[coordfrom.X] = fromvalue.ToString()[0];
         GardenMap[coordfrom.Y] = new String(robotline);
-    
         robotline = GardenMap[coordto.Y].ToCharArray();
         robotline[coordto.X] = 'R';
         GardenMap[coordto.Y] = new String(robotline);
@@ -91,6 +91,7 @@ namespace LawnMowerRobot {
     public int counter;
     private Coords Charger{ get; init;}
     private Dictionary<Coords,int> RobotMap;
+
     public Robot(Coords charger)
     {
         Charger = charger;
@@ -136,7 +137,6 @@ namespace LawnMowerRobot {
         counter = RobotMap[moveto];
         PreviousPosition = Position;
         Position = moveto;
-
     }
     private int Examine(Coords cord, Garden garden)
     {
@@ -170,13 +170,10 @@ namespace LawnMowerRobot {
 
         };
         Coords charger = new Coords(4,2);
-
         Garden garden = new Garden(initGardenMap, charger);
-        
         Robot robot = new Robot(charger);
 
         garden.Draw();
-        
         do
         {
             Thread.Sleep(200);
@@ -188,4 +185,4 @@ namespace LawnMowerRobot {
         
     }   
   }
-  }
+}
