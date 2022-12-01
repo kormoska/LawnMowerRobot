@@ -54,6 +54,7 @@ namespace LawnMowerRobot {
     }
     public void Draw()
     {
+        Console.Clear();
         for (int i = 0; i< GardenMap.Length; i++)
         {
             for (int j = 0; j < GardenMap[i].Length; j++)
@@ -173,13 +174,12 @@ namespace LawnMowerRobot {
         Garden garden = new Garden(initGardenMap, charger);
         
         Robot robot = new Robot(charger);
-        Console.Clear();
+
         garden.Draw();
         
         do
         {
             Thread.Sleep(200);
-            Console.Clear();
             robot.Move(garden);
             garden.RobotMoved(robot.PreviousPosition, robot.Position,robot.counter);
             garden.Draw();
